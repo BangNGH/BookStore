@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Admin</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-
+                        target=".navbar-collapse" title="more options">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Sách hay", "Index", "Home", new { area = "" }, new
+                {
+                    @class =
+                "navbar-brand"
+                })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("Quản lý Chủ đề", "Index", "Category", new
+                        {
+                            area =
+                "Admin"
+                        }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Quản lý Sách", "Index", "Book", new
+                        {
+                            area = "Admin"
+                }, null)
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <!-- Content row -->
+    <div class="container">
+
+        <div class="row">
+            <!-- SIDEBAR Open -->
+            <div id="content-left" class="col-2 col-lg-2">
+                <h1>Quản lý</h1>
+                <ul>
+                    <li>
+                        @Html.ActionLink("Quản lý Chủ đề", "Index", "Category", new
+                        {
+                            area =
+                "Admin"
+                        }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Quản lý Sách", "Index", "Book", new
+                        {
+                            area = "Admin"
+                }, null)
+                    </li>
+                </ul>
+            </div>
+            <!-- right content box -->
+            <div id="content-right" class="col-lg-10 container">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <footer style="text-align:center">
+                    <p>&copy; @DateTime.Now.Year - Lập trình Web</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+</body>
+</html>

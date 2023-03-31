@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>THÔNG TIN CHI TIẾT SÁCH </h3>
+<div>
+    <div style="width:40%; float:left; border-left:dotted 1px; border-color:azure">
+        <img alt="@Model.Title" src="~/img/@Model.Image" style="width:100%" />
+    </div>
+    <div style="width: 60%; float: left">
+        <h4 style="font-weight: bold; color: red">Tên sách: @Model.Title</h4>
+        <h4 style="font-weight:bold; color:red">Tác giả: @Model.Author</h4>
+        <p style="text-align:justify">
+            <span style="font-weight:bold">
+                Mô tả:
+            </span>@Model.Description
+        </p>
+        <p style="font-weight:bold">
+            Giá bán: <span style="color:red; font-size:16px">
+                @Model.Price
+                VNĐ
+            </span>
+        </p>
+    </div>
+    <div>
+        <div>
+            @Html.ActionLink("Thêm vào giỏ hàng", "AddToCart", "ShoppingCart", new { id = Model.Id }, new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>

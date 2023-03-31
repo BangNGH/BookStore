@@ -1,0 +1,9 @@
+﻿
+@model IEnumerable< Buoi6_TrenLop.Models.Category>
+<h1>Chủ đề</h1>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(item.CategoryName, "GetBookByCategory/" + item.CategoryId, "Book") </li>
+    }
+</ul>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Buoi6_TrenLop.Models.Cart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+
+<table align="center" border="1">
+    <tr style="text-align:center; font-weight:bold">
+        <td> Tên sách </td>
+        <td> Ảnh bìa </td>
+        <td> Số lượng </td>
+        <td> Đơn giá </td>
+        <td> Thành tiền </td>
+        <td width="50px"></td>
+        <td width="50px"></td>
+        <td width="50px"></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center; font-weight:bold">
+            <td> @item.Title </td>
+            <td><img src="~/img/@item.Image" style="width:200px" /> </td>
+            @using (Html.BeginForm("UpdateCart", "ShoppingCart", new { id = item.Id }))
+            {
+                <td>
+                    <input type="number" min="1" name="txtQuantity" value="@item.Quatity" style="background-color:yellow" />
+                </td>
+                <td> @String.Format("{0:0,0}", item.Price) </td>
+                <td> @String.Format("{0:0,0}", item.Money) </td>
+                <td><a href="@Url.Action("Details","Book",new { id = item.Id })"> Chi tiết </a></td>
+                <td>
+                    <a href="@Url.Action("RemoveCartItem", "ShoppingCart", new { id = item.Id })" class="btn btn-danger btn-xs">Xóa</a>
+                </td>
+                <td> <input type="submit" value="Cập nhật" class="btn btn-primary" /></td>
+            }
+        </tr>
+    }
+    <tr style="font-weight:bold; text-align:right; color:red">
+        <td colspan="5"> Số lượng sách: @ViewBag.Quatity </td>
+        <td colspan="5"> Tổng tiền: @String.Format("{0:0,0}", ViewBag.Total) VNĐ</td>
+    </tr>
+    <tr style="font-weight:bold; color:blue; text-align:right">
+        <td colspan="9">
+            @Html.ActionLink("Xóa Giỏ Hàng", "Delete", null, null, new { @class = "btn btn-danger btn-xs" })
+
+        </td>
+    </tr>
+    <tr style="font-weight:bold; color:blue; text-align:right">
+        <td colspan="9" align="center">
+            @Html.ActionLink("ĐẶT HÀNG", "Order", "ShoppingCart", null, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+</table>
+
+<style>
+    .float-right {
+        float: right;
+        margin: 10px
+    }
+</style>
+@Html.ActionLink("Tiếp tục mua hàng", "Index", "Book", null, new { @class = "btn btn-primary float-right" })
+

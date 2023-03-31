@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<Buoi6_TrenLop.Models.Book>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Search", "Book", FormMethod.Get))
+{
+    <div style="margin:50px">
+        <input type="text" id="search" name="searchString" placeholder="Tìm kiếm" style="padding: 8px; background: #eee; border-radius: 4px 0 0 4px; border: none; outline: none;">
+        <button style="background-color: #5cb85c; color: #fff; padding: 8px 16px; border-radius: 0 4px 4px 0; border: none; cursor: pointer;">Tìm kiếm</button>
+    </div>
+
+}
+<table class="table" id="tblBooks">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p><strong>Tác giả: </strong>@item.Title</p>
+                                <p><strong>Tác giả: </strong>@item.Author</p>
+                                <p><strong>Thể loại: </strong>@item.Category.CategoryName</p>
+                                <img style="align-self:center;" alt="@item.Title" src="~/img/@item.Image" width="125" height="150" />
+                            </div>
+                            <div class="panel-footer clearfix">
+                                <div class="pull-right">
+                                    @Html.ActionLink("Xem", "Details", "Book", new { id = item.Id }, new { @class = "btn btn-default" })
+                                    @Html.ActionLink("Thêm vào giỏ hàng", "AddToCart", "ShoppingCart", new { id = item.Id }, new { @class = "btn btn-success" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="row">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+

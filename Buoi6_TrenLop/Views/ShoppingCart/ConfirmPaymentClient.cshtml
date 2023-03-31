@@ -1,0 +1,25 @@
+﻿
+
+@{
+    ViewBag.Title = "Confirm Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>Message: @ViewBag.Message</p>
+<p>Order ID: @ViewBag.OrderId</p>
+@if (ViewBag.ErrorCode == "0")
+{
+    <p>Đặt hàng thành công! Đơn hàng sẽ được gửi đi trong vòng 7 ngày tới</p>
+}
+else
+{
+    <p>Payment failed.</p>
+}
+<p>
+    @Html.ActionLink("Back", "Index", "Book")
+</p>
+
+
+

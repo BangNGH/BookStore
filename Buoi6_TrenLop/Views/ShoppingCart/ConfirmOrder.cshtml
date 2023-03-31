@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "ConfirmOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="center">
+    <h2 style="margin:20px">Vui lòng thanh toán đơn hàng để xác nhận cho mã đơn hàng: @ViewBag.newOrderNo</h2>
+    @Html.ActionLink("Thanh toán", "Payment", "ShoppingCart", new { id = ViewBag.newOrderNo }, new { @class = "btn btn-primary" })
+</div>
+<p>
+    @Html.ActionLink("Back to home", "Index", "Book")
+</p>
+
+<style>
+    .center {
+        text-align: center;
+        margin: 20px;
+    }
+</style>
